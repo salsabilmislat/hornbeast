@@ -6,12 +6,14 @@ class HornedBeasts extends React.Component {
         super(props);
         this.state = {
             numberOfVotes: 0,
+            numberOfFav:'',
         }
     }
 
     increaseNumberOfVote = () => {
         this.setState({
-            numberOfVotes: this.state.numberOfVotes + 1
+            numberOfVotes: this.state.numberOfVotes + 1,
+            numberOfFav:this.state.numberOfFav + '❤️',
         });
     }
 
@@ -31,7 +33,7 @@ class HornedBeasts extends React.Component {
                             {this.props.description}
                         </Card.Text>
                         <Card.Text>
-                        ❤️ : {this.state.numberOfVotes}
+                         {this.state.numberOfVotes} {this.state.numberOfFav}
                         </Card.Text>
 
                     </Card.Body>
