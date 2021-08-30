@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 class HornedBeasts extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +18,12 @@ class HornedBeasts extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ display:"inline-block" }}>
                 {/* <h2></h2>
             <p></p>
             <p>  </p>
             <img src=  alt={this.props.title} style={{height: "300px" ,width:"300px"}}/> */}
-                <Card style={{ width: '18rem' }}>
+                <Card style={{margin:'2rem', width: '18rem' }}>
                     <Card.Img variant="top" src={this.props.image_url} onClick={this.increaseNumberOfVote} />
                     <Card.Body>
                         <Card.Title>{this.props.title}</Card.Title>
@@ -31,7 +31,7 @@ class HornedBeasts extends React.Component {
                             {this.props.description}
                         </Card.Text>
                         <Card.Text>
-                            Number Of Votes {this.state.numberOfVotes}
+                        ❤️ : {this.state.numberOfVotes}
                         </Card.Text>
 
                     </Card.Body>
