@@ -4,35 +4,59 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import data from './assest/data.json';
 import SelectedBeast from './components/SelectedBeast ';
+import HornedForm from './components/HornedForm';
 class App extends React.Component {
   constructor(props) {
     super(props);
     {
       this.state = {
+        ArrOfAllObject: data,
         show: false,
         title: '',
-        description: '',
-        image_url: '',
+       
+        // description: '',
+        // image_url: '',
+        selctedImage: {}
       }
     }
   };
 
-  handleClose = (title, description, image_url) => {
+  displayData = (title) => {
+    let newData = data.filter(item => {
+      return (item.title == title)
+    })
     this.setState({
-      show: !this.state.show,
-      title: title,
-      description: description,
-      image_url: image_url,
+      selctedImage: newData[0],
+      title: title
     })
   }
+
+  handleClose = () => {
+    this.setState({
+      show: !this.state.show,
+      // title: title,
+      // description: description,
+      // image_url: image_url,
+    })
+  }
+  
+  UpdateData = (ArrOfAllObject) => {
+    console.log(ArrOfAllObject);
+    this.setState({
+      ArrOfAllObject: ArrOfAllObject
+    });
+  }
+
 
   render() {
     return (
       <div >
         <Header />
-        <Main beasts={data} handleClose={this.handleClose} />
+        <HornedForm UpdateData={this.UpdateData} />
+        <Main beasts={this.state.ArrOfAllObject} handleClose={this.handleClose} displayData={this.displayData} />
         <Footer />
-        <SelectedBeast show={this.state.show} handleClose={this.handleClose} title={this.state.title} description={this.state.description} image_url={this.state.image_url} />
+        <SelectedBeast show={this.state.show} handleClose={this.handleClose} beasts={data} selctedImage={this.state.selctedImage} />
+       
       </div>
     );
   }
